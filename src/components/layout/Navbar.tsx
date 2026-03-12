@@ -3,6 +3,9 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Button } from '../ui/Button';
 import { Menu, X } from 'lucide-react';
+import logo from "../../assets/logo.png";
+
+
 
 const navLinks = [
   { name: 'Home', path: '/' },
@@ -34,7 +37,7 @@ const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-400 to-accent-violet flex items-center justify-center">
-            <img src="src/assets/logo.png" alt="Global Mentorship Logos" />
+            <img src={logo} alt="Global Mentorship Logo" />
           </div>
           
         </Link>

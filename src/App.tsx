@@ -20,22 +20,26 @@ const App: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate initial resource fetch or just a minimum display time for the splash
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2500); // 2.5 seconds splash screen
+  const handleLoad = () => {
+    setTimeout(() => setLoading(false), 1500);
+  };
 
-    return () => clearTimeout(timer);
-  }, []);
+  if (document.readyState === "complete") {
+    handleLoad();
+  } else {
+    window.addEventListener("load", handleLoad);
+  }
+
+  return () => window.removeEventListener("load", handleLoad);
+}, []);
 
   return (
-    <div className="min-h-screen bg-surface-950 text-white font-body">
-      <AnimatePresence mode="wait">
-        {loading && <SplashScreen key="splash" />}
-      </AnimatePresence>
-
-      {!loading && (
-        <>
+  <div className="min-h-screen bg-surface-950 text-white font-body">
+    <AnimatePresence mode="wait">
+      {loading ? (
+        <SplashScreen key="splash" />
+      ) : (
+        <div key="app">
           <Navbar />
           <ScrollToTop />
           <Routes>
@@ -48,10 +52,11 @@ const App: React.FC = () => {
             <Route path="/contact" element={<ContactPage />} />
           </Routes>
           <Footer />
-        </>
+        </div>
       )}
-    </div>
-  );
+    </AnimatePresence>
+  </div>
+);
 };
 
 export default App;
