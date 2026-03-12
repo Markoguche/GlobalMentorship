@@ -11,10 +11,10 @@ export function Badge({ variant = 'default', size = 'md', children, className }:
   const baseStyles = 'inline-flex items-center font-medium rounded-full'
   
   const variants = {
-    default: 'bg-navy-100 text-navy-700',
-    primary: 'bg-primary-100 text-primary-700',
-    success: 'bg-emerald-100 text-emerald-700',
-    warning: 'bg-amber-100 text-amber-700'
+    default: 'bg-muted text-muted-foreground',
+    primary: 'bg-primary/10 text-primary',
+    success: 'bg-accent-emerald/10 text-accent-emerald',
+    warning: 'bg-amber-500/10 text-amber-500'
   }
   
   const sizes = {

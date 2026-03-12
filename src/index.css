@@ -4,11 +4,71 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    /* LIGHT MODE: White Background, Green Buttons, Black Text */
+    --background: 0 0% 100%; /* White */
+    --foreground: 0 0% 3.9%; /* Black */
+    
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+ 
+    --primary: 142.1 76.2% 36.3%; /* Green-600 */
+    --primary-foreground: 0 0% 100%; /* White text on button */
+
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 0 0% 9%;
+ 
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+ 
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 0 0% 9%;
+ 
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+ 
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 142.1 76.2% 36.3%;
+  }
+ 
+  .dark {
+    /* DARK MODE: Dark Green Background, Darker Green Buttons, White Text */
+    --background: 142 50% 12%; /* Deep Dark Green */
+    --foreground: 0 0% 98%; /* White Text */
+    
+    --card: 142 50% 10%; /* Slightly Darker Green for cards */
+    --card-foreground: 0 0% 98%;
+ 
+    --primary: 142.1 70.6% 45.3%; /* Vibrant Green for Buttons */
+    --primary-foreground: 0 0% 100%; /* White text on button */
+ 
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+ 
+    --muted: 142 30% 20%;
+    --muted-foreground: 240 5% 64.9%;
+ 
+    --accent: 142 30% 25%;
+    --accent-foreground: 0 0% 98%;
+ 
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+ 
+    --border: 142 30% 25%;
+    --input: 142 30% 25%;
+    --ring: 142.1 76.2% 36.3%;
+  }
+}
+
 body {
   font-family: 'DM Sans', sans-serif;
-  background-color: #020617;
-  color: #f1f5f9;
+  /* Uses dynamic variables */
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .font-display {
@@ -16,26 +76,41 @@ body {
 }
 
 .glass {
-  background: rgba(15, 23, 42, 0.7);
+  /* Uses dynamic variables for glass effect */
+  background: hsla(var(--background) / 0.8);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(148, 163, 184, 0.1);
+  border: 1px solid hsl(var(--border));
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #38bdf8 0%, #8b5cf6 50%, #f43f5e 100%);
+  background: linear-gradient(135deg, hsl(var(--primary)), #8b5cf6, #f43f5e);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Custom Scrollbar */
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: hsl(var(--muted));
 }
 ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: hsl(var(--primary));
   border-radius: 4px;
+}
+
+/* ScrollDemo specific utility classes */
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+.backface-hidden {
+  backface-visibility: hidden;
+}
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+.card-face {
+  backface-visibility: hidden;
 }

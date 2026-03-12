@@ -33,14 +33,14 @@ const HowItWorks: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-brand-500/5 to-transparent" />
+    <section ref={sectionRef} className="py-24 relative bg-background">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
       <div className="max-w-7xl mx-auto px-6 relative">
         <div className="text-center mb-16">
-          <span className="inline-block text-brand-400 font-medium text-sm uppercase tracking-wider mb-4">
+          <span className="inline-block text-primary font-medium text-sm uppercase tracking-wider mb-4">
             Simple Process
           </span>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
             How It Works
           </h2>
         </div>
@@ -49,15 +49,15 @@ const HowItWorks: React.FC = () => {
           {steps.map((step, i) => (
             <React.Fragment key={i}>
               <div className="step-card text-center relative z-10">
-                <div className="w-16 h-16 rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center mx-auto mb-4 transition-transform hover:scale-110">
-                  <step.icon className="text-brand-400" size={28} />
+                <div className="w-16 h-16 rounded-2xl bg-card border border-border flex items-center justify-center mx-auto mb-4 transition-transform hover:scale-110">
+                  <step.icon className="text-primary" size={28} />
                 </div>
-                <div className="font-display text-white font-semibold mb-2">{step.title}</div>
-                <p className="text-sm text-slate-400">{step.desc}</p>
+                <div className="font-display text-foreground font-semibold mb-2">{step.title}</div>
+                <p className="text-sm text-muted-foreground">{step.desc}</p>
               </div>
               {i < steps.length - 1 && (
                 <div className="hidden md:flex items-center justify-center absolute top-8 left-1/2 right-0 z-0" style={{ left: `${i * 20 + 10}%`, width: '20%' }}>
-                   <div className="h-px w-full bg-gradient-to-r from-brand-500/50 to-transparent" />
+                   <div className="h-px w-full bg-gradient-to-r from-primary/50 to-transparent" />
                 </div>
               )}
             </React.Fragment>

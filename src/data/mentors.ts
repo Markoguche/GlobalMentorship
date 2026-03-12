@@ -2,6 +2,9 @@ import men1 from '../assets/men1.jpg';
 import men2 from '../assets/men2.jpg';
 import men3 from '../assets/men3.jpg';
 import men4 from '../assets/men4.jpg';
+import men5 from '../assets/men5.jpg'; 
+import men6 from '../assets/men6.jpg'; 
+import men7 from '../assets/men7.jpg'; 
 import icon1 from '../assets/icon.jpg';
 import icon2 from '../assets/icon2.jpg';
 
@@ -45,7 +48,7 @@ Highlights of his achievements include:
     image: men1,
     rating: 4.8,
     sessions: 189,
-    location: "London, UK/Abuja, Nigeria"
+    location: "London, UK / Abuja, Nigeria"
   },
   {
     id: 2,
@@ -105,6 +108,64 @@ An accomplished public speaker, Princess regularly engages audiences on topics r
     rating: 4.7,
     sessions: 98,
     location: "Abuja, Nigeria"
+  },
+  // NEW MENTORS
+  {
+    id: 5,
+    name: "Imal Silva",
+    title: "Multidisciplinary Artist & Creative Entrepreneur",
+    bio: "Multidisciplinary artist, creative entrepreneur, adjunct lecturer and creative policy expert. Alumnus of the Royal College of Art.",
+    fullBio: `Imal Silva (born 16th January 1971) is multidisciplinary artist, creative entrepreneur, adjunct lecturer and creative policy expert. Imal is an alumnus of the Royal College of Art, United Kingdom.
+
+He is an artist at his core and over the years has explored the concept of sustainability and human development. In recent times, his work has extended to more philosophical conversations of life, meaning and purpose. The approach to his art is mostly abstract and contemporary in nature.
+
+Born in Sri Lanka, and living most of his teenage and adult life in Nigeria, his life and work reflect the increasing reality of a larger demographic of migrants and persons of multicultural backgrounds.
+
+Imal is an adjunct lecturer at the University of Abuja on the creative economy and a serial speaker on visual art and the business of art. He has participated in several exhibitions and workshops in Ibadan, Lagos, and Abuja in Nigeria. He has also served twice as a judge in the Annual National Art Competition, titled Life in My City organized by the French Institute in Nigeria.
+
+He believes that the arts are strategic to public engagement and promoting values of sustainability, and has enabled several creatives, through projects in communities where he lived. He encourages creatives to use their creativity to engage in social and developmental issues.`,
+    skills: ["Visual Arts", "Creative Economy", "Lecturing", "Business Development", "Sustainability Advocacy"],
+    price: 180,
+    image: men5,
+    rating: 4.9,
+    sessions: 145,
+    location: "Abuja, Nigeria"
+  },
+  {
+    id: 6,
+    name: "Elijah Affi",
+    title: "Executive Producer & Mandela Fellow",
+    bio: "Executive Producer, Creative Director, CoFounder of Takeout Media. Executive Producer for the Netflix #1 film Tokunbo.",
+    fullBio: `Elijah Affi is an accomplished Executive Producer, Creative Director, and CoFounder of Takeout Media. With extensive experience in media production, Elijah has successfully led a range of high-profile projects, blending creativity with strategic vision to deliver exceptional content. His leadership and expertise have made him a key figure in the entertainment and media industries.
+
+Elijah served as Executive Producer for the Netflix #1 film Tokunbo, a project that received widespread acclaim and attracted a global audience. As the Lead Producer at Ingene Studios, he continues to spearhead innovative productions, guiding teams through every stage of the creative process—from initial concept to final delivery.
+
+In addition to his work in production, Elijah is a certified management consultant, leveraging his business acumen to collaborate with top-tier organizations. His client portfolio includes global brands such as the World Bank, TotalEnergies, and Ecobank.
+
+Passionate about creating impactful content, Elijah is committed to pushing the boundaries of storytelling and elevating the quality of entertainment worldwide. He is a Director of TM Global and a Mandela Washington Fellow.`,
+    skills: ["Media Production", "Creative Direction", "Executive Production", "Strategic Vision", "Management Consulting"],
+    price: 160,
+    image: men6,
+    rating: 4.8,
+    sessions: 130,
+    location: "Abuja, Nigeria"
+  },
+  {
+    id: 7,
+    name: "Nkaru Darlington",
+    title: "CEO EmperorCares Int'l",
+    bio: "Seasoned businessman based in China with years of experience in entrepreneurship and international business development.",
+    fullBio: `Nkaru Darlington is a bilingual entrepreneur and the CEO of EMPERORCARES INT'L LTD. Based in China, he brings years of robust experience in entrepreneurship and strategic business development.
+
+He specializes in bridging markets between Asia and Africa, leveraging his deep understanding of cross-cultural business dynamics to foster international trade relationships. His leadership at EmperorCares Int'l focuses on delivering quality solutions and expanding operational footprints across borders.
+
+Nkaru is dedicated to empowering businesses to navigate the complexities of the global market, providing insights into supply chain management, sourcing, and market entry strategies for companies looking to expand internationally.`,
+    skills: ["International Trade", "Entrepreneurship", "Business Development", "Cross-cultural Business", "Supply Chain Management"],
+    price: 140,
+    image: men7,
+    rating: 4.7,
+    sessions: 110,
+    location: "China"
   }
 ];
 

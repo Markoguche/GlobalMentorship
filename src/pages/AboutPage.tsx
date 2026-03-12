@@ -13,22 +13,18 @@ const fadeUp = {
 
 const staggerContainer = {
   hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.2 }
-  }
+  visible: { opacity: 1, transition: { staggerChildren: 0.2 } }
 };
 
 const AboutPage: React.FC = () => {
   return (
-    <main className="min-h-screen bg-surface-950 text-white overflow-hidden">
+    <main className="min-h-screen bg-background text-foreground overflow-hidden">
     <SEO 
         title="About Us" 
         description="Our mission is to democratize access to world-class mentorship. Learn about our story, vision, and values." 
       />  
       {/* SECTION 1: Hero with Particles Background */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        {/* Particle Background Container */}
         <div className="absolute inset-0 z-0">
           <Particles
             particleColors={['#38bdf8', '#8b5cf6', '#ffffff']}
@@ -39,11 +35,9 @@ const AboutPage: React.FC = () => {
             moveParticlesOnHover
             alphaParticles
           />
-          {/* Gradient Overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-surface-950 via-surface-950/50 to-transparent z-10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent z-10" />
         </div>
 
-        {/* Hero Content */}
         <motion.div 
           className="relative z-20 max-w-5xl mx-auto px-6 text-center"
           initial="hidden"
@@ -51,7 +45,7 @@ const AboutPage: React.FC = () => {
           variants={staggerContainer}
         >
           <motion.div variants={fadeUp} className="mb-6">
-            <span className="inline-block px-4 py-2 rounded-full border border-brand-500/30 bg-brand-500/10 text-brand-400 text-sm font-medium mb-6 backdrop-blur-sm">
+            <span className="inline-block px-4 py-2 rounded-full border border-primary/30 bg-primary/10 text-primary text-sm font-medium mb-6 backdrop-blur-sm">
               Our Story
             </span>
           </motion.div>
@@ -61,7 +55,7 @@ const AboutPage: React.FC = () => {
             <span className="gradient-text">Potential & Greatness</span>
           </motion.h1>
           
-          <motion.p variants={fadeUp} className="text-xl text-slate-400 max-w-2xl mx-auto mb-10">
+          <motion.p variants={fadeUp} className="text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
             We believe talent is universal, but opportunity is not. Our mission is to democratize access to world-class mentorship for every ambitious professional, anywhere in the world.
           </motion.p>
 
@@ -84,11 +78,11 @@ const AboutPage: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <span className="text-brand-400 font-medium text-sm uppercase tracking-wider">Origin</span>
-            <h2 className="font-display text-4xl md:text-5xl font-bold mt-4 mb-6">
+            <span className="text-primary font-medium text-sm uppercase tracking-wider">Origin</span>
+            <h2 className="font-display text-4xl md:text-5xl font-bold mt-4 mb-6 text-foreground">
               Born From Necessity
             </h2>
-            <div className="space-y-4 text-slate-400 text-lg leading-relaxed">
+            <div className="space-y-4 text-muted-foreground text-lg leading-relaxed">
               <p>
                 In 2024, we noticed a gap. Young professionals in emerging markets were brimming with talent and ambition, yet they lacked access to the networks and guidance taken for granted in Silicon Valley or London.
               </p>
@@ -99,7 +93,7 @@ const AboutPage: React.FC = () => {
           </motion.div>
 
           <motion.div 
-            className="relative h-[400px] rounded-2xl overflow-hidden border border-slate-800"
+            className="relative h-[400px] rounded-2xl overflow-hidden border border-border"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -110,14 +104,14 @@ const AboutPage: React.FC = () => {
               alt="Team collaboration" 
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-surface-950/80 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
           </motion.div>
         </div>
       </SectionWrapper>
 
       {/* SECTION 3: Mission & Vision */}
-      <section className="py-24 bg-surface-900/50 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-brand-500/5 via-transparent to-transparent" />
+      <section className="py-24 bg-muted/30 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent" />
         
         <div className="max-w-7xl mx-auto px-6 relative">
           <motion.div 
@@ -126,41 +120,39 @@ const AboutPage: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">Our Purpose</h2>
-            <p className="text-slate-400 text-lg max-w-2xl mx-auto">Guided by clarity, driven by impact.</p>
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">Our Purpose</h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Guided by clarity, driven by impact.</p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            {/* Mission Card */}
             <motion.div 
-              className="p-10 rounded-2xl border border-slate-800 bg-slate-900/50 backdrop-blur-sm hover:border-brand-500/30 transition-colors duration-500"
+              className="p-10 rounded-2xl border border-border bg-card backdrop-blur-sm hover:border-primary/30 transition-colors duration-500"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <div className="w-14 h-14 rounded-xl bg-brand-500/10 flex items-center justify-center mb-6">
-                <Target className="text-brand-400" size={28} />
+              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
+                <Target className="text-primary" size={28} />
               </div>
-              <h3 className="font-display text-2xl font-bold mb-4">Our Mission</h3>
-              <p className="text-slate-400 text-lg leading-relaxed">
+              <h3 className="font-display text-2xl font-bold text-foreground mb-4">Our Mission</h3>
+              <p className="text-muted-foreground text-lg leading-relaxed">
                 To democratize access to world-class guidance. We exist to ensure that every entrepreneur, creator, and professional—regardless of location or background—has the support system they need to build impactful careers and businesses.
               </p>
             </motion.div>
 
-            {/* Vision Card */}
             <motion.div 
-              className="p-10 rounded-2xl border border-slate-800 bg-slate-900/50 backdrop-blur-sm hover:border-accent-violet/30 transition-colors duration-500"
+              className="p-10 rounded-2xl border border-border bg-card backdrop-blur-sm hover:border-primary/30 transition-colors duration-500"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.15 }}
             >
-              <div className="w-14 h-14 rounded-xl bg-accent-violet/10 flex items-center justify-center mb-6">
-                <Eye className="text-accent-violet" size={28} />
+              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
+                <Eye className="text-primary" size={28} />
               </div>
-              <h3 className="font-display text-2xl font-bold mb-4">Our Vision</h3>
-              <p className="text-slate-400 text-lg leading-relaxed">
+              <h3 className="font-display text-2xl font-bold text-foreground mb-4">Our Vision</h3>
+              <p className="text-muted-foreground text-lg leading-relaxed">
                 A world where geography does not dictate destiny. We see a future where a founder in Lagos has the same access to expertise as a founder in London, creating a truly global ecosystem of innovation and shared prosperity.
               </p>
             </motion.div>
@@ -175,7 +167,7 @@ const AboutPage: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-brand-400 font-medium text-sm uppercase tracking-wider"
+            className="text-primary font-medium text-sm uppercase tracking-wider"
           >
             Core Values
           </motion.span>
@@ -184,7 +176,7 @@ const AboutPage: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="font-display text-4xl md:text-5xl font-bold mt-4"
+            className="font-display text-4xl md:text-5xl font-bold mt-4 text-foreground"
           >
             What We Stand For
           </motion.h2>
@@ -205,13 +197,13 @@ const AboutPage: React.FC = () => {
             <motion.div 
               key={i} 
               variants={fadeUp}
-              className="text-center p-8 rounded-2xl border border-slate-800 bg-surface-950 hover:bg-slate-900/50 transition-all duration-300"
+              className="text-center p-8 rounded-2xl border border-border bg-card hover:bg-muted/30 transition-all duration-300"
             >
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-brand-500/20 to-accent-violet/20 flex items-center justify-center mx-auto mb-6">
-                <value.icon className="text-brand-400" size={28} />
+              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
+                <value.icon className="text-primary" size={28} />
               </div>
-              <h3 className="font-display text-xl font-semibold mb-3">{value.title}</h3>
-              <p className="text-slate-400">{value.desc}</p>
+              <h3 className="font-display text-xl font-semibold text-foreground mb-3">{value.title}</h3>
+              <p className="text-muted-foreground">{value.desc}</p>
             </motion.div>
           ))}
         </motion.div>
@@ -221,9 +213,8 @@ const AboutPage: React.FC = () => {
   );
 };
 
-// Helper wrapper for consistent section padding
 const SectionWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <section className="py-24 relative">
+  <section className="py-24 relative bg-background">
     <div className="max-w-7xl mx-auto px-6">
       {children}
     </div>

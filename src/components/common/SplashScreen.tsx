@@ -5,7 +5,7 @@ import logo from "../../assets/logo.png";
 const SplashScreen: React.FC = () => {
   return (
     <motion.div
-      className="fixed inset-0 z-[100] bg-surface-950 flex flex-col items-center justify-center"
+      className="fixed inset-0 z-[100] bg-background flex flex-col items-center justify-center"
       exit={{ opacity: 0 }}
       transition={{ duration: 0.6, ease: "easeInOut" }}
     >
@@ -14,28 +14,20 @@ const SplashScreen: React.FC = () => {
         
         {/* Rotating Ring */}
         <motion.div
-          className="absolute inset-0 rounded-full border-2 border-transparent border-t-brand-500 border-r-brand-500"
+          className="absolute inset-0 rounded-full border-2 border-transparent border-t-primary border-r-primary"
           animate={{ rotate: 360 }}
-          transition={{
-            duration: 1.6,
-            repeat: Infinity,
-            ease: "linear",
-          }}
+          transition={{ duration: 1.6, repeat: Infinity, ease: "linear" }}
         />
 
         {/* Secondary Ring */}
         <motion.div
-          className="absolute inset-2 rounded-full border-2 border-transparent border-b-accent-violet border-l-accent-violet opacity-50"
+          className="absolute inset-2 rounded-full border-2 border-transparent border-b-primary border-l-primary opacity-50"
           animate={{ rotate: -360 }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: "linear",
-          }}
+          transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
         />
 
         {/* Glow */}
-        <div className="absolute inset-0 bg-brand-500/20 blur-xl rounded-full" />
+        <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full" />
 
         {/* Logo */}
         <motion.img
@@ -49,22 +41,18 @@ const SplashScreen: React.FC = () => {
       </div>
 
       {/* Loader Bar */}
-      <div className="w-56 h-1 bg-slate-800 rounded-full overflow-hidden">
+      <div className="w-56 h-1 bg-muted rounded-full overflow-hidden">
         <motion.div
-          className="h-full bg-gradient-to-r from-brand-500 via-blue-400 to-accent-violet rounded-full"
+          className="h-full bg-primary rounded-full"
           initial={{ width: "0%" }}
           animate={{ width: "100%" }}
-          transition={{
-            duration: 1.5,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
         />
       </div>
 
       {/* Loading Text */}
       <motion.p
-        className="mt-6 text-slate-400 text-sm font-medium tracking-widest uppercase"
+        className="mt-6 text-muted-foreground text-sm font-medium tracking-widest uppercase"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3 }}

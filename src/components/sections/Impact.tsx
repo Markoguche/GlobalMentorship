@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -23,12 +23,7 @@ const Impact: React.FC = () => {
         onEnter: () => {
           document.querySelectorAll('.stat-value').forEach((el) => {
             const target = parseInt(el.getAttribute('data-value') || '0');
-            gsap.to(el, {
-              textContent: target,
-              duration: 2,
-              snap: { textContent: 1 },
-              ease: "power1.out",
-            });
+            gsap.to(el, { textContent: target, duration: 2, snap: { textContent: 1 }, ease: "power1.out" });
           });
         },
         once: true,
@@ -38,31 +33,21 @@ const Impact: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-r from-brand-500/10 via-transparent to-accent-violet/10" />
+    <section ref={sectionRef} className="py-24 relative overflow-hidden bg-background">
+      <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-transparent to-primary/10" />
       <div ref={countersRef} className="max-w-7xl mx-auto px-6 relative">
         <div className="text-center mb-16">
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">
-            Our Global Impact
-          </h2>
-          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-            Measured in careers transformed and businesses launched.
-          </p>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">Our Global Impact</h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Measured in careers transformed and businesses launched.</p>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat, i) => (
-            <div key={i} className="text-center p-8 rounded-2xl border border-slate-800 bg-slate-900/50">
-              <div className="font-display text-4xl md:text-5xl font-bold text-white mb-2">
-                {stat.short ? (
-                  <span>{stat.short}</span>
-                ) : (
-                  <>
-                    {stat.prefix}<span className="stat-value" data-value={stat.value}>0</span>{stat.suffix}
-                  </>
-                )}
+            <div key={i} className="text-center p-8 rounded-2xl border border-border bg-card">
+              <div className="font-display text-4xl md:text-5xl font-bold text-foreground mb-2">
+                {stat.short ? <span>{stat.short}</span> : <>{stat.prefix}<span className="stat-value" data-value={stat.value}>0</span>{stat.suffix}</>}
               </div>
-              <div className="text-slate-400">{stat.label}</div>
+              <div className="text-muted-foreground">{stat.label}</div>
             </div>
           ))}
         </div>

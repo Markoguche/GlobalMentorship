@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import { mentors } from '../data/mentors';
 import { Card, CardContent } from '../components/ui/Card';
 import { Star, MapPin } from 'lucide-react';
-// ... imports
 import SEO from '../components/common/SEO';
 
 const MentorCard = ({ mentor }: { mentor: typeof mentors[0] }) => (
@@ -16,7 +15,8 @@ const MentorCard = ({ mentor }: { mentor: typeof mentors[0] }) => (
   >
     <Link to={`/mentor/${mentor.id}`} className="block h-full">
       <Card className="overflow-hidden h-full flex flex-col">
-        <div className="aspect-[4/3] overflow-hidden relative bg-slate-800">
+        {/* Changed aspect ratio to 4/5 for better portrait fit */}
+        <div className="aspect-[4/5] overflow-hidden relative bg-card">
           <img
             src={mentor.image}
             alt={mentor.name}
@@ -25,27 +25,23 @@ const MentorCard = ({ mentor }: { mentor: typeof mentors[0] }) => (
         </div>
         <CardContent className="p-5 flex flex-col flex-grow">
           <div className="flex justify-between items-start mb-2">
-            <h3 className="font-display text-lg font-semibold text-white">{mentor.name}</h3>
-            <div className="flex items-center gap-1 text-amber-400 text-sm">
+            <h3 className="font-display text-lg font-semibold text-foreground">{mentor.name}</h3>
+            <div className="flex items-center gap-1 text-amber-500 text-sm">
               <Star size={14} fill="currentColor" />
               {mentor.rating}
             </div>
           </div>
-          <p className="text-brand-400 text-sm mb-2">{mentor.title}</p>
-          
-          {/* Bio Preview added here - limited to 2 lines */}
-          <p className="text-slate-400 text-sm mb-4 line-clamp-2">
-            {mentor.bio}
-          </p>
+          <p className="text-primary text-sm mb-2">{mentor.title}</p>
+          <p className="text-muted-foreground text-sm mb-4 line-clamp-2">{mentor.bio}</p>
 
           <div className="mt-auto">
-            <div className="flex items-center text-slate-400 text-sm mb-4">
+            <div className="flex items-center text-muted-foreground text-sm mb-4">
               <MapPin size={14} className="mr-1" />
               {mentor.location}
             </div>
-            <div className="border-t border-slate-700 pt-3 flex justify-between items-center">
-              <span className="font-display font-bold text-white">${mentor.price}</span>
-              <span className="text-slate-400 text-sm">/ session</span>
+            <div className="border-t border-border pt-3 flex justify-between items-center">
+              <span className="font-display font-bold text-foreground">${mentor.price}</span>
+              <span className="text-muted-foreground text-sm">/ session</span>
             </div>
           </div>
         </CardContent>
@@ -56,18 +52,17 @@ const MentorCard = ({ mentor }: { mentor: typeof mentors[0] }) => (
 
 const MentorsPage: React.FC = () => {
   return (
-    
-    <main className="min-h-screen pt-24 pb-16">
-       <SEO 
+    <main className="min-h-screen pt-24 pb-16 bg-background">
+      <SEO 
         title="Find a Mentor" 
         description="Browse our diverse roster of expert mentors. Filter by expertise, industry, and location to find your perfect match." 
       />
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-12">
-          <h1 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">
+          <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
             Our Mentors
           </h1>
-          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Connect with industry leaders ready to guide you to success.
           </p>
         </div>

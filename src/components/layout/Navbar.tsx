@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Button } from '../ui/Button';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sun, Moon } from 'lucide-react';
 import logo from "../../assets/logo.png";
-
-
+import { useTheme } from '../../context/ThemeContext'; 
 
 const navLinks = [
   { name: 'Home', path: '/' },
@@ -18,6 +17,7 @@ const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -36,10 +36,12 @@ const Navbar: React.FC = () => {
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-400 to-accent-violet flex items-center justify-center">
-            <img src={logo} alt="Global Mentorship Logo" />
-          </div>
-          
+          {/* Removed the green background box wrapper */}
+          <img 
+            src={logo} 
+            alt="Global Mentorship Logo" 
+            className="h-8 w-auto md:h-10 object-contain" 
+          />
         </Link>
 
         {/* Desktop Menu */}
@@ -48,8 +50,8 @@ const Navbar: React.FC = () => {
             <Link 
               key={link.name} 
               to={link.path}
-              className={`text-sm font-medium transition-colors hover:text-white ${
-                location.pathname === link.path ? 'text-white' : 'text-slate-400'
+              className={`text-sm font-medium transition-colors hover:text-primary ${
+                location.pathname === link.path ? 'text-primary' : 'text-muted-foreground'
               }`}
             >
               {link.name}
@@ -57,15 +59,31 @@ const Navbar: React.FC = () => {
           ))}
         </div>
 
-        <div className="hidden md:block">
-          <Link to="/mentors" className="text-sm border-white border-2 rounded-lg p-3 font-medium transition-colors hover:text-white">
-            Find a Mentor
+        <div className="hidden md:flex items-center gap-4">
+          {/* Theme Toggle */}
+          <button 
+            onClick={toggleTheme}
+            className="p-2 rounded-full hover:bg-muted transition-colors text-foreground"
+          >
+            {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
+          </button>
+
+          <Link to="/mentors">
+            <Button>Find a Mentor</Button>
           </Link>
         </div>
 
-        <button onClick={() => setMobileOpen(!mobileOpen)} className="md:hidden text-white">
-          {mobileOpen ? <X /> : <Menu />}
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+           <button 
+            onClick={toggleTheme}
+            className="p-2 rounded-full hover:bg-muted transition-colors text-foreground"
+          >
+            {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
+          </button>
+          <button onClick={() => setMobileOpen(!mobileOpen)} className="text-foreground">
+            {mobileOpen ? <X /> : <Menu />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
@@ -81,14 +99,14 @@ const Navbar: React.FC = () => {
                 key={link.name} 
                 to={link.path}
                 onClick={() => setMobileOpen(false)}
-                className="text-slate-300 hover:text-white py-2"
+                className="text-foreground hover:text-primary py-2"
               >
                 {link.name}
               </Link>
             ))}
-            <Link to="/mentors" className="text-sm border-white border-2 rounded-lg p-3 font-medium transition-colors hover:text-white">
-            Find a Mentor
-          </Link>
+            <Link to="/mentors" onClick={() => setMobileOpen(false)} className="w-full">
+              <Button className="w-full">Find a Mentor</Button>
+            </Link>
           </div>
         </motion.div>
       )}
