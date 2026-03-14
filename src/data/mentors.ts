@@ -20,6 +20,8 @@ export interface Mentor {
   rating: number;
   sessions: number;
   location: string;
+  email: string;
+  category: 'CEO' | 'CTO' | 'CMO' | 'Creative' | 'Operations' | 'Expert'; // Added Category
 }
 
 export interface Testimonial {
@@ -48,7 +50,9 @@ Highlights of his achievements include:
     image: men1,
     rating: 4.8,
     sessions: 189,
-    location: "London, UK / Abuja, Nigeria"
+    location: "London, UK / Abuja, Nigeria",
+    email: "oyewole@example.com",
+    category: "CEO"
   },
   {
     id: 2,
@@ -65,7 +69,9 @@ She has spearheaded the establishment and growth of multiple businesses, earning
     image: men2,
     rating: 4.9,
     sessions: 234,
-    location: "Abuja, Nigeria"
+    location: "Abuja, Nigeria",
+    email: "ijeoma@example.com",
+    category: "CEO"
   },
   {
     id: 3,
@@ -84,7 +90,9 @@ With an understanding of the pivotal role that a strong online presence plays in
     image: men3,
     rating: 4.9,
     sessions: 156,
-    location: "Abuja, Nigeria"
+    location: "Abuja, Nigeria",
+    email: "pamela@example.com",
+    category: "CMO"
   },
   {
     id: 4,
@@ -107,9 +115,10 @@ An accomplished public speaker, Princess regularly engages audiences on topics r
     image: men4,
     rating: 4.7,
     sessions: 98,
-    location: "Abuja, Nigeria"
+    location: "Abuja, Nigeria",
+    email: "princess@example.com",
+    category: "Operations"
   },
-  // NEW MENTORS
   {
     id: 5,
     name: "Imal Silva",
@@ -129,7 +138,9 @@ He believes that the arts are strategic to public engagement and promoting value
     image: men5,
     rating: 4.9,
     sessions: 145,
-    location: "Abuja, Nigeria"
+    location: "Abuja, Nigeria",
+    email: "imal@example.com",
+    category: "Creative"
   },
   {
     id: 6,
@@ -148,7 +159,9 @@ Passionate about creating impactful content, Elijah is committed to pushing the 
     image: men6,
     rating: 4.8,
     sessions: 130,
-    location: "Abuja, Nigeria"
+    location: "Abuja, Nigeria",
+    email: "elijah@example.com",
+    category: "CMO"
   },
   {
     id: 7,
@@ -165,7 +178,9 @@ Nkaru is dedicated to empowering businesses to navigate the complexities of the 
     image: men7,
     rating: 4.7,
     sessions: 110,
-    location: "China"
+    location: "China",
+    email: "nkaru@example.com",
+    category: "CEO"
   }
 ];
 

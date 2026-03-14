@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { mentors } from '../data/mentors';
 import { Card, CardContent } from '../components/ui/Card';
-import { Star, MapPin } from 'lucide-react';
+import { Button } from '../components/ui/Button';
+import { Star, MapPin, LogIn } from 'lucide-react';
 import SEO from '../components/common/SEO';
 
 const MentorCard = ({ mentor }: { mentor: typeof mentors[0] }) => (
@@ -72,6 +73,32 @@ const MentorsPage: React.FC = () => {
             <MentorCard key={mentor.id} mentor={mentor} />
           ))}
         </div>
+
+        {/* NEW SECTION: Mentor Login Access */}
+        <div className="mt-20 pt-12 border-t border-border">
+          <div className="max-w-xl mx-auto text-center">
+            <Card className="bg-card border-border shadow-sm">
+              <CardContent className="p-8">
+                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
+                  <LogIn size={28} className="text-primary" />
+                </div>
+                <h2 className="font-display text-2xl font-bold text-foreground mb-2">Mentor Portal</h2>
+                <p className="text-muted-foreground mb-6">
+                  Are you a mentor? Log in to access your dashboard, view your earnings, and track your sessions.
+                </p>
+                <Link to="/mentor-login">
+                  <Button 
+                    size="lg" 
+                    className="bg-accent-emerald text-white hover:bg-white hover:text-accent-emerald border border-accent-emerald transition-colors duration-200"
+                  >
+                    Login to Dashboard
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+
       </div>
     </main>
   );

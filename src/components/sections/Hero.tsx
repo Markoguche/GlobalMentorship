@@ -18,22 +18,18 @@ const Hero: React.FC = () => {
     return () => ctx.revert();
   }, []);
 
-  // Update to show all 7 mentors
   const floatingMentors = mentors; 
-  // Increased radius to 220 to space out 7 avatars properly
   const radius = 220; 
 
   return (
     <div>
       <section ref={heroRef} className="relative min-h-screen flex items-center overflow-hidden pt-24 lg:pt-0 bg-background">
-        {/* Decorative Grid Pattern */}
         <div className="absolute inset-0 opacity-20 pointer-events-none" style={{
           backgroundImage: 'radial-gradient(hsl(var(--foreground) / 0.1) 1px, transparent 1px)',
           backgroundSize: '40px 40px'
         }} />
         
         <div className="relative z-10 max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* LEFT COLUMN */}
           <div className="text-center lg:text-left">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -61,12 +57,13 @@ const Hero: React.FC = () => {
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Button>
               </Link>
-              <Link to="/about">
-                <Button variant="outline" size="lg">Learn More</Button>
+              
+              {/* UPDATED: Links to generic booking page to force selection */}
+              <Link to="/booking">
+                <Button variant="outline" size="lg">Book a Session</Button>
               </Link>
             </div>
             
-            {/* Stats Row */}
             <div className="hero-btn mt-12 grid grid-cols-3 gap-4 max-w-md mx-auto lg:mx-0">
               {[
                 { value: "700+", label: "Mentees" },
@@ -81,22 +78,18 @@ const Hero: React.FC = () => {
             </div>
           </div>
           
-          {/* RIGHT COLUMN: Visual */}
           <div className="relative h-[500px] lg:h-[600px] hero-visual">
-            {/* Center Rocket Container */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 rounded-full bg-gradient-to-br from-primary to-primary/50 flex items-center justify-center shadow-2xl shadow-primary/40 border border-primary/20 z-10">
               <div className="w-36 h-36 rounded-full bg-background/80 backdrop-blur-sm flex items-center justify-center border border-border">
                 <Rocket size={64} className="text-primary transform -rotate-45" strokeWidth={1.5} />
               </div>
             </div>
             
-            {/* Orbiting Avatars - Now 7 mentors, spaced out with radius 220 */}
             {floatingMentors.map((mentor, index) => {
-              // Calculate angle for even distribution
               const angle = (index / floatingMentors.length) * 360;
               const x = Math.cos((angle * Math.PI) / 180) * radius;
               const y = Math.sin((angle * Math.PI) / 180) * radius;
-              const centerOffset = 40; // Half of w-20 (80px)
+              const centerOffset = 40;
               
               return (
                 <motion.div
@@ -108,7 +101,7 @@ const Hero: React.FC = () => {
                     scale: 1, 
                     y: [
                       y - centerOffset,      
-                      y - centerOffset - 10, // Float effect
+                      y - centerOffset - 10, 
                       y - centerOffset       
                     ]
                   }}
@@ -128,7 +121,6 @@ const Hero: React.FC = () => {
               );
             })}
             
-            {/* Decorative Lines - Increased size to match radius */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[440px] h-[440px] border border-dashed border-border rounded-full pointer-events-none" />
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-border/50 rounded-full pointer-events-none" />
           </div>
