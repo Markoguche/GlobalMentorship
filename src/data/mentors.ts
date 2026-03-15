@@ -174,7 +174,7 @@ He specializes in bridging markets between Asia and Africa, leveraging his deep 
 
 Nkaru is dedicated to empowering businesses to navigate the complexities of the global market, providing insights into supply chain management, sourcing, and market entry strategies for companies looking to expand internationally.`,
     skills: ["International Trade", "Entrepreneurship", "Business Development", "Cross-cultural Business", "Supply Chain Management"],
-    price: 140,
+    price: 180,
     image: men7,
     rating: 4.7,
     sessions: 110,

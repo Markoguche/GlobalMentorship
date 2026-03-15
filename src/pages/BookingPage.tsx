@@ -4,33 +4,73 @@ import { motion } from 'framer-motion';
 import { mentors } from '../data/mentors';
 import { Button } from '../components/ui/Button';
 import { Card, CardContent } from '../components/ui/Card';
-import { Calendar, Clock, CheckCircle, Users, Star, X } from 'lucide-react';
+import { Calendar, Clock, Users, Star, X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const CLUSTER_FEE = 600; 
 
+// Helper to generate time slots
+const generateTimeSlots = () => {
+  const slots = [];
+  for (let i = 9; i <= 17; i++) { // 9 AM to 5 PM
+    slots.push(`${i}:00`);
+    slots.push(`${i}:30`);
+  }
+  return slots;
+};
+
 const BookingPage: React.FC = () => {
-  const { id } = useParams<{ id?: string }>(); // ID is now optional
+  const { id } = useParams<{ id?: string }>();
   const navigate = useNavigate();
   
-  // Check if we have a preselected mentor from URL
   const preselectedMentor = id ? mentors.find(m => String(m.id) === id) : null;
   
   const [isClusterMode, setIsClusterMode] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   
-  // State for Solo Mentor (defaults to URL mentor if present)
+  // State for Mentor Selection
   const [selectedSoloMentor, setSelectedSoloMentor] = useState<typeof mentors[0] | null>(preselectedMentor || null);
-  
-  // State for Cluster Mentors - Resets to empty on page refresh
   const [selectedClusterMentors, setSelectedClusterMentors] = useState<typeof mentors>([]);
+  
+  // --- NEW: State for Date & Time ---
+  const [currentMonth, setCurrentMonth] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [selectedTime, setSelectedTime] = useState<string | null>(null);
 
   const categories = ['CEO', 'CTO', 'CMO', 'Operations', 'Creative'];
+  const timeSlots = generateTimeSlots();
   
   const filteredMentors = selectedCategory 
     ? mentors.filter(m => m.category === selectedCategory) 
     : [];
 
-  // --- CLUSTER LOGIC ---
+  // --- Calendar Logic ---
+  const getDaysInMonth = (date: Date) => {
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const firstDayOfMonth = new Date(year, month, 1).getDay(); // 0 = Sunday
+    return { daysInMonth, firstDayOfMonth };
+  };
+
+  const { daysInMonth, firstDayOfMonth } = getDaysInMonth(currentMonth);
+
+  const handlePrevMonth = () => setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1, 1));
+  const handleNextMonth = () => setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 1));
+
+  const isDateDisabled = (day: number) => {
+    const date = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), day);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return date < today; // Disable past dates
+  };
+
+  const handleDateSelect = (day: number) => {
+    if (isDateDisabled(day)) return;
+    setSelectedDate(new Date(currentMonth.getFullYear(), currentMonth.getMonth(), day));
+    setSelectedTime(null); // Reset time when date changes
+  };
+
+  // --- Cluster Logic ---
   const handleSelectClusterMentor = (mentorToAdd: typeof mentors[0]) => {
     if (selectedClusterMentors.find(m => m.id === mentorToAdd.id)) return;
     if (selectedClusterMentors.length >= 4) {
@@ -45,20 +85,42 @@ const BookingPage: React.FC = () => {
     setSelectedClusterMentors(selectedClusterMentors.filter(m => m.id !== mentorId));
   };
 
+  // --- Payment Navigation ---
   const handleProceedToPayment = () => {
-    if (!selectedSoloMentor) return;
-    navigate(`/payment/${selectedSoloMentor.id}`);
+    if (!selectedSoloMentor || !selectedDate || !selectedTime) {
+      alert('Please select a mentor, date, and time.');
+      return;
+    }
+    navigate(`/payment/${selectedSoloMentor.id}`, {
+      state: {
+        date: selectedDate.toISOString(),
+        time: selectedTime
+      }
+    });
   };
 
   const handleClusterPayment = () => {
+    if (!selectedDate || !selectedTime) {
+      alert('Please select a date and time for the session.');
+      return;
+    }
+    if (selectedClusterMentors.length < 2) {
+      alert('Please select at least 2 mentors for a cluster session.');
+      return;
+    }
+    
     navigate(`/payment/cluster`, {
       state: {
         isCluster: true,
         mentorIds: selectedClusterMentors.map(m => m.id),
-        totalAmount: CLUSTER_FEE
+        totalAmount: CLUSTER_FEE,
+        date: selectedDate.toISOString(),
+        time: selectedTime
       }
     });
   };
+
+  const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
   return (
     <main className="min-h-screen pt-24 pb-16 bg-background">
@@ -96,13 +158,12 @@ const BookingPage: React.FC = () => {
 
         <div className="grid lg:grid-cols-3 gap-8">
           
-          {/* LEFT COLUMN: Selection Logic */}
+          {/* LEFT COLUMN: Mentor Selection */}
           <div className="lg:col-span-2 space-y-6">
             
             {!isClusterMode ? (
               // --- SOLO MODE UI ---
               selectedSoloMentor ? (
-                // If mentor is selected (either from URL or clicked), show details
                 <Card className="bg-card border-border">
                   <CardContent className="p-6">
                     <div className="flex gap-6">
@@ -113,7 +174,6 @@ const BookingPage: React.FC = () => {
                             <h3 className="font-display text-xl font-bold text-foreground">{selectedSoloMentor.name}</h3>
                             <p className="text-primary text-sm mb-2">{selectedSoloMentor.title}</p>
                           </div>
-                          {/* Allow deselecting if they came from Hero/Selection */}
                           {!preselectedMentor && (
                              <Button variant="ghost" size="sm" onClick={() => setSelectedSoloMentor(null)}>
                                <X size={16} />
@@ -127,29 +187,9 @@ const BookingPage: React.FC = () => {
                         <p className="text-foreground font-bold text-lg">${selectedSoloMentor.price}</p>
                       </div>
                     </div>
-                    
-                    <div className="mt-6 grid grid-cols-2 gap-4">
-                      <div className="flex items-center gap-3 text-muted-foreground">
-                        <Clock size={18} /> <span>45 Minutes</span>
-                      </div>
-                      <div className="flex items-center gap-3 text-muted-foreground">
-                        <Calendar size={18} /> <span>Flexible Schedule</span>
-                      </div>
-                    </div>
-
-                    <div className="mt-6 pt-6 border-t border-border">
-                      <Button 
-                        className="w-full bg-accent-emerald text-white" 
-                        size="lg"
-                        onClick={handleProceedToPayment}
-                      >
-                        Book Solo Session
-                      </Button>
-                    </div>
                   </CardContent>
                 </Card>
               ) : (
-                // If NO mentor selected (came from Hero), show selection grid
                 <Card className="bg-card border-border">
                   <CardContent className="p-6">
                     <h3 className="font-display text-lg font-bold text-foreground mb-4">Select a Mentor</h3>
@@ -240,26 +280,119 @@ const BookingPage: React.FC = () => {
             )}
           </div>
 
-          {/* RIGHT COLUMN: Summary Sidebar (Only for Cluster or Summary) */}
-          {isClusterMode && (
-            <div className="lg:col-span-1">
-              <div className="sticky top-24">
-                <Card className="bg-card border-border">
-                  <CardContent className="p-6 space-y-4">
-                    <h3 className="font-display text-lg font-bold text-foreground">Summary</h3>
-                    <div className="space-y-2 text-sm">
-                      <div className="flex justify-between text-muted-foreground">
-                        <span>Session Type</span>
-                        <span className="text-foreground font-medium">Group Call</span>
-                      </div>
-                      <div className="flex justify-between text-muted-foreground">
-                        <span>Mentors</span>
-                        <span className="text-foreground font-medium">{selectedClusterMentors.length}</span>
-                      </div>
-                    </div>
+          {/* RIGHT COLUMN: Schedule & Summary */}
+          <div className="lg:col-span-1 space-y-6">
+            
+            {/* DATE & TIME SELECTION CARD */}
+            <Card className="bg-card border-border">
+              <CardContent className="p-6">
+                <h3 className="font-display text-lg font-bold text-foreground mb-4 flex items-center gap-2">
+                  <Calendar className="text-primary" size={20} /> Schedule
+                </h3>
 
+                {/* Calendar Header */}
+                <div className="flex justify-between items-center mb-4">
+                  <Button variant="ghost" size="icon" onClick={handlePrevMonth}>
+                    <ChevronLeft size={18} />
+                  </Button>
+                  <span className="font-semibold text-foreground">
+                    {monthNames[currentMonth.getMonth()]} {currentMonth.getFullYear()}
+                  </span>
+                  <Button variant="ghost" size="icon" onClick={handleNextMonth}>
+                    <ChevronRight size={18} />
+                  </Button>
+                </div>
+
+                {/* Calendar Grid */}
+                <div className="grid grid-cols-7 gap-1 text-center mb-2">
+                  {['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'].map(day => (
+                    <div key={day} className="text-xs font-medium text-muted-foreground py-1">{day}</div>
+                  ))}
+                </div>
+                <div className="grid grid-cols-7 gap-1">
+                  {/* Empty cells for days before the 1st */}
+                  {Array.from({ length: firstDayOfMonth }).map((_, i) => (
+                    <div key={`empty-${i}`} className="h-9 w-9" />
+                  ))}
+                  
+                  {/* Actual Days */}
+                  {Array.from({ length: daysInMonth }).map((_, i) => {
+                    const day = i + 1;
+                    const date = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), day);
+                    const isSelected = selectedDate?.toDateString() === date.toDateString();
+                    const disabled = isDateDisabled(day);
+                    
+                    return (
+                      <button
+                        key={day}
+                        onClick={() => handleDateSelect(day)}
+                        disabled={disabled}
+                        className={`h-9 w-9 rounded-full flex items-center justify-center text-sm transition-colors
+                          ${isSelected ? 'bg-primary text-white' : 'hover:bg-muted'}
+                          ${disabled ? 'text-muted-foreground/30 cursor-not-allowed' : 'text-foreground'}
+                        `}
+                      >
+                        {day}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {/* Time Slots */}
+                {selectedDate && (
+                  <motion.div 
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    className="mt-6 border-t border-border pt-4"
+                  >
+                    <h4 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+                      <Clock className="text-primary" size={16} /> Available Times
+                    </h4>
+                    <div className="grid grid-cols-3 gap-2">
+                      {timeSlots.map(slot => (
+                        <Button
+                          key={slot}
+                          variant={selectedTime === slot ? 'default' : 'outline'}
+                          size="sm"
+                          className={selectedTime === slot ? 'bg-primary text-white' : 'border-border text-foreground'}
+                          onClick={() => setSelectedTime(slot)}
+                        >
+                          {slot}
+                        </Button>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </CardContent>
+            </Card>
+
+            {/* SUMMARY CARD (Only shows content when ready) */}
+            <Card className="bg-card border-border">
+              <CardContent className="p-6 space-y-4">
+                <h3 className="font-display text-lg font-bold text-foreground">Summary</h3>
+                
+                {/* Selected Date/Time Display */}
+                {selectedDate && selectedTime ? (
+                  <div className="text-sm space-y-1 mb-4 text-muted-foreground">
+                    <p className="flex justify-between">
+                      <span>Date:</span> 
+                      <span className="text-foreground font-medium">{selectedDate.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}</span>
+                    </p>
+                    <p className="flex justify-between">
+                      <span>Time:</span> 
+                      <span className="text-foreground font-medium">{selectedTime}</span>
+                    </p>
+                  </div>
+                ) : (
+                  <p className="text-xs text-muted-foreground mb-4 text-center border border-dashed border-border p-2 rounded-lg">
+                    Select a date and time above
+                  </p>
+                )}
+
+                {/* Cluster Pricing (If in Cluster Mode) */}
+                {isClusterMode && (
+                  <>
                     <div className="border-t border-border pt-4">
-                      {/* FIX: Only show price if mentors are selected */}
                       {selectedClusterMentors.length > 0 ? (
                         <>
                           <div className="flex justify-between font-bold text-foreground text-lg">
@@ -279,16 +412,36 @@ const BookingPage: React.FC = () => {
 
                     <Button 
                       className="w-full bg-primary text-white" 
-                      disabled={selectedClusterMentors.length < 2}
+                      disabled={selectedClusterMentors.length < 2 || !selectedDate || !selectedTime}
                       onClick={handleClusterPayment}
                     >
-                      {selectedClusterMentors.length < 2 ? `Select ${2 - selectedClusterMentors.length} more` : 'Proceed to Payment'}
+                      Proceed to Payment
                     </Button>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-          )}
+                  </>
+                )}
+
+                {/* Solo Pricing (If in Solo Mode) */}
+                {!isClusterMode && selectedSoloMentor && (
+                  <>
+                    <div className="border-t border-border pt-4">
+                      <div className="flex justify-between font-bold text-foreground text-lg">
+                        <span>Total</span>
+                        <span>${selectedSoloMentor.price + 5}</span>
+                      </div>
+                    </div>
+
+                    <Button 
+                      className="w-full bg-accent-emerald text-white" 
+                      disabled={!selectedDate || !selectedTime}
+                      onClick={handleProceedToPayment}
+                    >
+                      Book Solo Session
+                    </Button>
+                  </>
+                )}
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     </main>

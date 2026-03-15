@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
+import { Toaster } from 'sonner'; 
 
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
@@ -41,6 +42,7 @@ const App: React.FC = () => {
   return (
     <AuthProvider>
       <div className="min-h-screen bg-surface-950 text-white font-body">
+         <Toaster position="top-right" richColors /> 
         <AnimatePresence mode="wait">
           {loading ? (
             <SplashScreen key="splash" />
@@ -69,3 +71,6 @@ const App: React.FC = () => {
 };
 
 export default App;
+
+
+ 
