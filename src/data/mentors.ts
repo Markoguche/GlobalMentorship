@@ -65,7 +65,7 @@ In her role as Chief Executive Officer at Servelead Group of Companies and Progr
 
 She has spearheaded the establishment and growth of multiple businesses, earning recognition such as the Servelead Global Award for Excellence. Driven by a passion for excellence and a relentless pursuit of success, she is poised to continue making meaningful contributions to organisational growth and societal advancement.`,
     skills: ["Strategic Vision Mapping", "Leadership Development", "Public Speaking", "People Management", "Change Management", "Emotional Intelligence"],
-    price: 150,
+    price: 50,
     image: men2,
     rating: 4.9,
     sessions: 234,
@@ -86,7 +86,7 @@ Pamela Williams has had multiple awards over the years. In 2023, she was awarded
 
 With an understanding of the pivotal role that a strong online presence plays in shaping and elevating a brand's success, she consistently aims to help you stand out. She delivers exceptional, excellent, and effective public speeches and trainings that educate, empower, and enrich diverse target audiences.`,
     skills: ["Brand Strategy", "Creative Direction", "Digital Marketing", "Content Development", "Public Speaking", "Event Planning"],
-    price: 100,
+    price: 20,
     image: men3,
     rating: 4.9,
     sessions: 156,
@@ -111,7 +111,7 @@ Key Expertise:
 
 An accomplished public speaker, Princess regularly engages audiences on topics related to sustainable development and social impact. Additionally, she provides training in grant writing, LinkedIn optimization, project/program management, and volunteer management.`,
     skills: ["Program Management", "Grant Writing", "LinkedIn Optimization", "Development Communications", "Volunteer Management", "SDG Advocacy"],
-    price: 90,
+    price: 20,
     image: men4,
     rating: 4.7,
     sessions: 98,
@@ -134,7 +134,7 @@ Imal is an adjunct lecturer at the University of Abuja on the creative economy a
 
 He believes that the arts are strategic to public engagement and promoting values of sustainability, and has enabled several creatives, through projects in communities where he lived. He encourages creatives to use their creativity to engage in social and developmental issues.`,
     skills: ["Visual Arts", "Creative Economy", "Lecturing", "Business Development", "Sustainability Advocacy"],
-    price: 180,
+    price: 150,
     image: men5,
     rating: 4.9,
     sessions: 145,
@@ -155,7 +155,7 @@ In addition to his work in production, Elijah is a certified management consulta
 
 Passionate about creating impactful content, Elijah is committed to pushing the boundaries of storytelling and elevating the quality of entertainment worldwide. He is a Director of TM Global and a Mandela Washington Fellow.`,
     skills: ["Media Production", "Creative Direction", "Executive Production", "Strategic Vision", "Management Consulting"],
-    price: 160,
+    price: 100,
     image: men6,
     rating: 4.8,
     sessions: 130,
