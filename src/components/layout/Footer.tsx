@@ -2,24 +2,49 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Twitter, Linkedin, Instagram, Mail } from 'lucide-react';
 import logo from "../../assets/logo.png";
+import QRCode from "react-qr-code";
 
 const Footer: React.FC = () => {
   return (
     <footer className="relative z-10 border-t border-border bg-background pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-6">
+
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
-           <div className="col-span-2 md:col-span-1">
+          
+          {/* Column 1: Brand + QR */}
+          <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-2 mb-4">
-              {/* Removed the empty green div, kept only the logo */}
               <img
                 src={logo}
                 alt="Global Mentorship Logo"
                 className="h-8 w-auto md:h-10 object-contain"
               />
             </div>
-            <p className="text-muted-foreground text-sm leading-relaxed">Connecting ambitious professionals with world-class mentors.</p>
+
+            <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+              Connecting ambitious professionals with world-class mentors.
+            </p>
+
+            {/* QR Code */}
+            <div>
+              <h4 className="font-display font-semibold text-foreground mb-3">
+                Scan to Join
+              </h4>
+
+              <div className="bg-white p-3 rounded-xl border border-border shadow-sm hover:shadow-md transition w-fit">
+                <QRCode
+                  value="https://globalmentorship-program.vercel.app/mentors"
+                  size={110}
+                  bgColor="#ffffff"
+                  fgColor="#0f2e1b"
+                />
+              </div>
+
+              
+            </div>
           </div>
-          
+
+          {/* Platform */}
           <div>
             <h4 className="font-display font-semibold text-foreground mb-4">Platform</h4>
             <ul className="space-y-3 text-sm text-muted-foreground">
@@ -28,6 +53,7 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
+          {/* Company */}
           <div>
             <h4 className="font-display font-semibold text-foreground mb-4">Company</h4>
             <ul className="space-y-3 text-sm text-muted-foreground">
@@ -36,16 +62,22 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
+          {/* Legal */}
           <div>
             <h4 className="font-display font-semibold text-foreground mb-4">Legal</h4>
             <ul className="space-y-3 text-sm text-muted-foreground">
               <li><Link to="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link></li>
             </ul>
           </div>
+
         </div>
 
+        {/* Bottom */}
         <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-muted-foreground text-sm">© 2026 Global Mentorship Program. All rights reserved.</p>
+          <p className="text-muted-foreground text-sm">
+            © 2026 Global Mentorship Program. All rights reserved.
+          </p>
+
           <div className="flex items-center gap-4">
             <a href="#" className="text-muted-foreground hover:text-primary transition-colors"><Twitter size={20} /></a>
             <a href="#" className="text-muted-foreground hover:text-primary transition-colors"><Linkedin size={20} /></a>
@@ -53,6 +85,7 @@ const Footer: React.FC = () => {
             <a href="#" className="text-muted-foreground hover:text-primary transition-colors"><Mail size={20} /></a>
           </div>
         </div>
+
       </div>
     </footer>
   );

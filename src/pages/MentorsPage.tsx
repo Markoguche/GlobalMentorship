@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { mentors } from '../data/mentors';
 import { Card, CardContent } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
-import { Star, MapPin, LogIn } from 'lucide-react';
+import { Star, MapPin, LogIn, Users, CheckCircle } from 'lucide-react';
 import SEO from '../components/common/SEO';
 
 const MentorCard = ({ mentor }: { mentor: typeof mentors[0] }) => (
@@ -74,7 +74,61 @@ const MentorsPage: React.FC = () => {
           ))}
         </div>
 
-        {/* NEW SECTION: Mentor Login Access */}
+        {/* NEW SECTION: The Power of Mentorship */}
+        <div className="mt-20 mb-20">
+          <Card className="bg-gradient-to-br from-card to-muted/10 border-border shadow-lg overflow-hidden">
+            <CardContent className="p-8 md:p-12 text-center">
+              <div className="max-w-3xl mx-auto">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-6">
+                  <Users size={28} className="text-primary" />
+                </div>
+                <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
+                  The Power of Mentorship
+                </h2>
+                <p className="text-muted-foreground text-lg mb-8">
+                  Mentorship is a transformative journey. It bridges the gap between where you are and where you want to be. 
+                  Our mentors provide more than just advice; they offer a roadmap to success, helping you navigate challenges, 
+                  unlock new opportunities, and accelerate your career growth.
+                </p>
+                
+                <div className="grid md:grid-cols-3 gap-6 mb-10 text-left">
+                  <div className="flex gap-3">
+                    <div className="mt-1 text-accent-emerald"><CheckCircle size={20}/></div>
+                    <div>
+                      <h3 className="font-semibold text-foreground mb-1">Guidance & Wisdom</h3>
+                      <p className="text-sm text-muted-foreground">Navigate complex career decisions with experienced insights.</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-3">
+                    <div className="mt-1 text-accent-emerald"><CheckCircle size={20}/></div>
+                    <div>
+                      <h3 className="font-semibold text-foreground mb-1">Network Access</h3>
+                      <p className="text-sm text-muted-foreground">Connect with industry leaders and global opportunities.</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-3">
+                    <div className="mt-1 text-accent-emerald"><CheckCircle size={20}/></div>
+                    <div>
+                      <h3 className="font-semibold text-foreground mb-1">Accountability</h3>
+                      <p className="text-sm text-muted-foreground">Stay focused on your goals with regular check-ins.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <a href="https://forms.gle/n6dsG91p2z3UMTKJA" target="_blank" rel="noopener noreferrer">
+                  <Button 
+                    size="lg" 
+                    className="bg-primary text-white hover:bg-primary/90 shadow-lg shadow-primary/20"
+                  >
+                    Become a Mentor
+                  </Button>
+                </a>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Mentor Login Access */}
         <div className="mt-20 pt-12 border-t border-border">
           <div className="max-w-xl mx-auto text-center">
             <Card className="bg-card border-border shadow-sm">

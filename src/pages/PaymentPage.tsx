@@ -140,7 +140,7 @@ const PaymentPage: React.FC = () => {
       );
 
       // --- SAVE TRANSACTION ---
-      const commissionRate = 0.10;
+      const commissionRate = 0.15;
       const existingTransactions = JSON.parse(localStorage.getItem('platform_transactions') || '[]');
 
       if (isCluster) {
