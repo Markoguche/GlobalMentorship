@@ -16,7 +16,6 @@ const MentorCard = ({ mentor }: { mentor: typeof mentors[0] }) => (
   >
     <Link to={`/mentor/${mentor.id}`} className="block h-full">
       <Card className="overflow-hidden h-full flex flex-col">
-        {/* Changed aspect ratio to 4/5 for better portrait fit */}
         <div className="aspect-[4/5] overflow-hidden relative bg-card">
           <img
             src={mentor.image}
@@ -40,10 +39,19 @@ const MentorCard = ({ mentor }: { mentor: typeof mentors[0] }) => (
               <MapPin size={14} className="mr-1" />
               {mentor.location}
             </div>
+            
+            {/* Price Logic Updated */}
             <div className="border-t border-border pt-3 flex justify-between items-center">
-              <span className="font-display font-bold text-foreground">${mentor.price}</span>
-              <span className="text-muted-foreground text-sm">/ session</span>
+              {mentor.price > 0 ? (
+                <>
+                  <span className="font-display font-bold text-foreground">${mentor.price}</span>
+                  <span className="text-muted-foreground text-sm">/ session</span>
+                </>
+              ) : (
+                <span className="font-display font-bold text-muted-foreground text-sm">Price TBD</span>
+              )}
             </div>
+
           </div>
         </CardContent>
       </Card>
@@ -74,7 +82,7 @@ const MentorsPage: React.FC = () => {
           ))}
         </div>
 
-        {/* NEW SECTION: The Power of Mentorship */}
+        {/* SECTION: The Power of Mentorship */}
         <div className="mt-20 mb-20">
           <Card className="bg-gradient-to-br from-card to-muted/10 border-border shadow-lg overflow-hidden">
             <CardContent className="p-8 md:p-12 text-center">

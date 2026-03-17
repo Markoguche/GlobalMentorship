@@ -54,16 +54,15 @@ Highlights of his achievements include:
 - Led business development initiatives at Servelead Global, achieving a staggering 50% and then 60% YoY revenue increase.
 - Cultivated a thriving work environment, fostering employee engagement and productivity, evidenced by winning the "Young Entrepreneur of the Year" award.`,
     skills: ["Business Development", "Strategic Partnerships", "Management", "Leadership", "Start-ups"],
-    price: 200,
+    price: 200, // KEEP
     image: men1,
     rating: 4.8,
-    sessions: 189,
+    sessions: 200,
     location: "London, UK / Abuja, Nigeria",
     email: "oyewole@example.com",
     category: "CEO",
     linkedin: "https://www.linkedin.com/in/oyewole-joledo-mba-m-sc-7a2617a2"
   },
-  // --- MATT BLACK MOVED TO #2 ---
   {
     id: 9,
     name: "Matt Black",
@@ -85,7 +84,7 @@ I'm particularly interested in how small teams and individuals will gain extraor
 
 If you're a founder, investor, or builder thinking about the future of Al-native companies and intelligent systems, l'd enjoy the conversation.`,
     skills: ["AI Strategy", "Multi-agent Systems", "Management Consulting", "Founder Advisory", "Decision Intelligence", "Strategic Planning"],
-    price: 500,
+    price: 500, // KEEP
     image: men9,
     rating: 5.0,
     sessions: 60,
@@ -94,7 +93,6 @@ If you're a founder, investor, or builder thinking about the future of Al-native
     category: "Expert",
     linkedin: "https://www.linkedin.com/in/themattblack"
   },
-  // ----------------------------
   {
     id: 2,
     name: "Ijeoma Aladesaye",
@@ -106,7 +104,7 @@ In her role as Chief Executive Officer at Servelead Group of Companies and Progr
 
 She has spearheaded the establishment and growth of multiple businesses, earning recognition such as the Servelead Global Award for Excellence. Driven by a passion for excellence and a relentless pursuit of success, she is poised to continue making meaningful contributions to organisational growth and societal advancement.`,
     skills: ["Strategic Vision Mapping", "Leadership Development", "Public Speaking", "People Management", "Change Management", "Emotional Intelligence"],
-    price: 150,
+    price: 150, // KEEP
     image: men2,
     rating: 4.9,
     sessions: 234,
@@ -128,7 +126,7 @@ Pamela Williams has had multiple awards over the years. In 2023, she was awarded
 
 With an understanding of the pivotal role that a strong online presence plays in shaping and elevating a brand's success, she consistently aims to help you stand out. She delivers exceptional, excellent, and effective public speeches and trainings that educate, empower, and enrich diverse target audiences.`,
     skills: ["Brand Strategy", "Creative Direction", "Digital Marketing", "Content Development", "Public Speaking", "Event Planning"],
-    price: 100,
+    price: 100, // KEEP
     image: men3,
     rating: 4.9,
     sessions: 156,
@@ -154,7 +152,7 @@ Key Expertise:
 
 An accomplished public speaker, Princess regularly engages audiences on topics related to sustainable development and social impact. Additionally, she provides training in grant writing, LinkedIn optimization, project/program management, and volunteer management.`,
     skills: ["Program Management", "Grant Writing", "LinkedIn Optimization", "Development Communications", "Volunteer Management", "SDG Advocacy"],
-    price: 90,
+    price: 100, // KEEP
     image: men4,
     rating: 4.7,
     sessions: 98,
@@ -178,7 +176,7 @@ Imal is an adjunct lecturer at the University of Abuja on the creative economy a
 
 He believes that the arts are strategic to public engagement and promoting values of sustainability, and has enabled several creatives, through projects in communities where he lived. He encourages creatives to use their creativity to engage in social and developmental issues.`,
     skills: ["Visual Arts", "Creative Economy", "Lecturing", "Business Development", "Sustainability Advocacy"],
-    price: 180,
+    price: 400, // KEEP
     image: men5,
     rating: 4.9,
     sessions: 145,
@@ -200,7 +198,7 @@ In addition to his work in production, Elijah is a certified management consulta
 
 Passionate about creating impactful content, Elijah is committed to pushing the boundaries of storytelling and elevating the quality of entertainment worldwide. He is a Director of TM Global and a Mandela Washington Fellow.`,
     skills: ["Media Production", "Creative Direction", "Executive Production", "Strategic Vision", "Management Consulting"],
-    price: 160,
+    price: 200, // KEEP
     image: men6,
     rating: 4.8,
     sessions: 130,
@@ -224,7 +222,7 @@ I possess 10 years experience in agro farming, International importation and exp
 
 As a business consultant, I help corporate organizations and individuals evaluate their business model, highlighting key opportunities, which when implemented yields business success. Also, I provide consulting services to offer business clarity to individuals or organizations hoping to venture into agro farming, import and export and mining of solid minerals.`,
     skills: ["International Trade", "Entrepreneurship", "Business Development", "Cross-cultural Business", "Supply Chain Management", "Agro Farming", "Mining Consulting"],
-    price: 140,
+    price: 180, // KEEP
     image: men7,
     rating: 4.7,
     sessions: 110,
@@ -233,7 +231,6 @@ As a business consultant, I help corporate organizations and individuals evaluat
     category: "CEO",
     linkedin: "https://www.linkedin.com/in/darlington-nkaru-2a5a86247"
   },
-  // --- NEW MENTORS ---
   {
     id: 8,
     name: "Hamzat Lawal",
@@ -251,7 +248,7 @@ Before his role at CODE, he was an Executive with the International Centre For E
 
 Hamzat was honored and recognized on the 2018 list of the world's 100 most influential people in digital government by Apolitical.`,
     skills: ["Activism", "Climate Change", "Open Data", "Grassroots Campaigns", "Policy Advocacy", "Non-Profit Leadership"],
-    price: 150,
+    price: 0, // REMOVED
     image: men8,
     rating: 4.9,
     sessions: 85,
@@ -273,7 +270,7 @@ My work involves guiding organizations through the complex landscape of fiscal s
 
 Whether it's a grassroots initiative or a scalable social enterprise, I provide the strategic oversight necessary to turn good intentions into tangible outcomes. My goal is to lower the barriers to entry for social good, allowing innovation and compassion to flourish in the nonprofit sector.`,
     skills: ["Non-profit Management", "Fiscal Sponsorship", "Strategic Planning", "Public Sector Management", "Leadership Development", "Social Entrepreneurship"],
-    price: 120,
+    price: 400, // KEEP
     image: men10,
     rating: 4.8,
     sessions: 75,
@@ -295,7 +292,7 @@ With a background in media and technology, I have cultivated a deep understandin
 
 My mission is to equip the next generation of African leaders and entrepreneurs with the insights and tools they need to thrive in a global economy.`,
     skills: ["Public Speaking", "Thought Leadership", "Podcasting", "Growth Strategy", "Partnerships", "Blockchain Consulting"],
-    price: 200,
+    price: 0, // REMOVED
     image: men11,
     rating: 4.9,
     sessions: 140,
@@ -321,7 +318,7 @@ An alumna of the MSc in International Human Rights Law Course at the University 
 
 In recognition of her work, Funke has been listed by The Attic London among the Top 50 Lawyers Changing the World for the Better (2020), received the $75,000 Waistliz Global Citizen Prize (2023), and was honoured with the International Bar Association's Outstanding Young Lawyer of the Year Award (2025).`,
     skills: ["Human Rights Law", "Justice Reform", "Social Innovation", "Non-profit Consulting", "Legal Consulting", "AI in Governance", "Leadership Development"],
-    price: 180,
+    price: 0, // REMOVED
     image: men12,
     rating: 5.0,
     sessions: 95,
@@ -347,10 +344,10 @@ He is also passionate about helping others on their entrepreneurial journeys and
 
 Currently, he is an Entrepreneur/Executive In Residence at Brunel Business School, a mentor at Hult Founder Lab, an International speaker at conferences, multiple business schools, entrepreneurial and tech communities across Europe.`,
     skills: ["Custom Software Development", "Business Analytics", "SaaS Development", "iOS Development", "Business Consulting", "Project Management", "Leadership Development", "Educational Consulting", "Team Building", "Application Development"],
-    price: 200,
+    price: 200, // KEEP
     image: men13,
     rating: 4.9,
-    sessions: 150,
+    sessions: 200,
     location: "Europe",
     email: "slava@example.com",
     category: "Expert",
