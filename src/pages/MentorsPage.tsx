@@ -128,7 +128,7 @@ const MentorsPage: React.FC = () => {
                     size="lg" 
                     className="bg-primary text-white hover:bg-primary/90 shadow-lg shadow-primary/20"
                   >
-                    Become a Mentor
+                    Join the Program
                   </Button>
                 </a>
               </div>
